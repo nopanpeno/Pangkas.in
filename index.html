@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <meta name="description" content="Pangkas.in membantu kamu membagikan tautan panjang dengan lebih ringkas.">
+  <title>Pangkas.in — Biar link nggak kepanjangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Pangkas.in beranda"><span class="brand-mark" aria-hidden="true">p.</span><span>pangkas<span class="brand-dot">.</span>in</span></a>
+    <a class="header-link" href="#cara-kerja">Cara kerja <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> LINK PANJANG, PANGKAS AJA</div>
+        <h1>Biar link-nya<br>nggak <span>kepanjangan.</span></h1>
+        <p class="hero-description">Satu tautan ringkas yang gampang diingat, gampang dibagikan. Nggak perlu ribet.</p>
+        <div class="hero-note"><span class="note-icon" aria-hidden="true">↳</span> Praktis buat dokumen, catatan, sampai link penting lainnya.</div>
+      </div>
+      <div class="form-card">
+        <div class="card-heading"><div><span class="card-kicker">MULAI DARI SINI</span><h2>Bikin shortlink</h2></div><span class="sparkle" aria-hidden="true">✳</span></div>
+        <form id="shortlink-form" novalidate>
+          <label for="destination">Link tujuan</label>
+          <div class="input-wrap"><span class="input-icon" aria-hidden="true">↗</span><input id="destination" name="destination" type="url" placeholder="https://docs.google.com/..." autocomplete="url" required></div>
+          <p class="field-hint">Pastikan link bisa dibuka oleh orang yang kamu kirimi.</p>
+          <label for="alias">Nama pendek pilihanmu</label>
+          <div class="alias-wrap"><span class="alias-prefix" id="alias-prefix">/</span><input id="alias" name="alias" type="text" placeholder="notulen-rapat" autocomplete="off" maxlength="48" required aria-describedby="alias-help"></div>
+          <p class="field-hint" id="alias-help">Huruf, angka, tanda hubung, atau garis bawah.</p>
+          <button class="primary-button" type="submit">Buat shortlink <span aria-hidden="true">↗</span></button>
+          <div id="form-message" class="form-message" role="status" aria-live="polite" hidden></div>
+        </form>
+        <div class="privacy-note"><span aria-hidden="true">✳</span> Gratis, simpel, tanpa akun.</div>
+      </div>
+    </section>
+    <section class="links-section" aria-labelledby="links-title">
+      <div class="section-heading"><div><span class="card-kicker">YANG SUDAH SIAP</span><h2 id="links-title">Link pendek pilihan</h2></div><span id="link-count" class="link-count"></span></div>
+      <div id="links-list" class="links-list" aria-live="polite"></div>
+      <div id="links-empty" class="empty-state" hidden>Belum ada shortlink. Pemilik situs bisa menambahkan link melalui <code>links.json</code>.</div>
+    </section>
+    <section class="how-section" id="cara-kerja">
+      <div class="how-title"><span class="card-kicker">SEDERHANA AJA</span><h2>Bagikan dalam<br><span>dua langkah.</span></h2></div>
+      <div class="steps">
+        <article class="step"><span class="step-number">01</span><h3>Siapkan link tujuan</h3><p>Tempel URL dokumen atau halaman yang ingin kamu bagikan.</p></article>
+        <article class="step"><span class="step-number">02</span><h3>Pilih nama pendek</h3><p>Pilih alias yang gampang diingat, lalu salin untuk dibagikan.</p></article>
+      </div>
+      <p class="static-note"><span aria-hidden="true">ⓘ</span> Versi ini memakai GitHub Pages. Shortlink baru perlu ditambahkan pemilik situs ke daftar konfigurasi sebelum bisa digunakan semua orang.</p>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="./"><span class="brand-mark" aria-hidden="true">p.</span><span>pangkas<span class="brand-dot">.</span>in</span></a><span>Link ringkas, pikiran lega.</span><span>© 2026 Pangkas.in</span></footer>
+</body>
+</html>
