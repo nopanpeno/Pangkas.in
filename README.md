@@ -19,6 +19,14 @@ Alias hanya boleh memakai huruf, angka, tanda hubung, dan garis bawah. Alias har
 
 Buka repo melalui server web statis, misalnya ekstensi Live Server di editor. Jangan membuka `index.html` sebagai file langsung karena browser membatasi pembacaan `links.json` dari file lokal.
 
+## Tambah link lewat GitHub Actions
+
+Buka tab **Actions** di repo (atau aplikasi GitHub di HP), pilih **Tambah shortlink**, tekan **Run workflow**, lalu isi alias dan link tujuan. Workflow memvalidasi input, membuang parameter pelacak (`utm_*`, `fbclid`, `gclid`) dan ID akun Google (`ouid`, `rtpof`, `sd`) dari link Google Docs/Drive, menambahkan baris ke `links.json`, lalu menerbitkan ulang situs. Link aktif sekitar 1–2 menit kemudian.
+
+Workflow ini butuh izin tulis ke branch `main`. Jika `main` dilindungi, aturan proteksi harus mengizinkan push dari GitHub Actions.
+
+Setiap penerbitan juga menjalankan `node scripts/links.mjs check`. Jika `links.json` rusak, situs tidak diterbitkan dan versi lama tetap aktif.
+
 ## GitHub Pages
 
-Atur GitHub Pages agar menerbitkan branch `main` dari folder root. File `404.html` mencari alias terakhir di path, mengambil tujuan dari `links.json`, lalu mengalihkan pengunjung. Path ini bekerja untuk domain khusus maupun URL GitHub Pages berbasis nama repo.
+Di Settings → Pages, atur **Source** ke **GitHub Actions**. Situs diterbitkan oleh `.github/workflows/pages.yml`, bukan langsung dari folder branch. File `404.html` mencari alias terakhir di path, mengambil tujuan dari `links.json`, lalu mengalihkan pengunjung. Path ini bekerja untuk domain khusus maupun URL GitHub Pages berbasis nama repo.
