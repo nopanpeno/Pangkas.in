@@ -3,45 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f6f2">
+  <meta name="theme-color" content="#fff9ed">
   <meta name="description" content="Pangkas.in membantu kamu membagikan tautan panjang dengan lebih ringkas.">
   <title>Pangkas.in — Link panjang? Pangkas aja.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="./" aria-label="Pangkas.in beranda">
-      <span class="brand-mark" aria-hidden="true">p.</span>
-      <span>pangkas<span class="brand-dot">.</span>in</span>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" role="img" aria-label="">
+          <circle cx="8" cy="9" r="4" fill="#fff9ed" stroke="currentColor" stroke-width="2.6"/>
+          <circle cx="8" cy="23" r="4" fill="#fff9ed" stroke="currentColor" stroke-width="2.6"/>
+          <path d="m11.5 11.5 13 11m-13 0 13-11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3"/>
+        </svg>
+      </span>
+      <span class="brand-word">pangkas<span class="brand-dot">.</span>in</span>
     </a>
     <nav class="header-nav" aria-label="Navigasi utama">
-      <span class="availability"><span class="availability-dot"></span> Siap bantu link kamu</span>
-      <a class="header-link" href="#cara-kerja">Cara kerja <span aria-hidden="true">↗</span></a>
+      <span class="availability"><span class="availability-dot"></span> LINK PENDEK, SIAP PAKAI</span>
+      <a class="header-link" href="#cara-kerja">Cara kerja <span aria-hidden="true">↘</span></a>
     </nav>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> LINK PANJANG, PANGKAS AJA</div>
+        <div class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✳</span> LINK PANJANG? PANGKAS AJA.</div>
         <h1 id="hero-title">Link panjang?<br><span>Pangkas aja.</span></h1>
         <p class="hero-description">Bikin tautan yang lebih ringkas, gampang diingat, dan enak dibagikan ke siapa saja.</p>
         <div class="hero-benefits" aria-label="Keunggulan Pangkas.in">
-          <span><span class="benefit-check">✓</span> Simpel digunakan</span>
-          <span><span class="benefit-check">✓</span> Cocok untuk Docs & Drive</span>
-          <span><span class="benefit-check">✓</span> Gratis, tanpa akun</span>
+          <span><b aria-hidden="true">✓</b> Simpel digunakan</span>
+          <span><b aria-hidden="true">✓</b> Cocok untuk Docs &amp; Drive</span>
+          <span><b aria-hidden="true">✓</b> Gratis, tanpa akun</span>
         </div>
-        <a class="hero-scroll" href="#link-pilihan"><span class="scroll-icon" aria-hidden="true">↓</span> Lihat link yang tersedia</a>
+        <a class="hero-scroll" href="#link-pilihan"><span class="scroll-icon" aria-hidden="true">↓</span> LIHAT LINK YANG TERSEDIA</a>
+        <span class="hero-sticker" aria-hidden="true">POTONG<br>YANG<br>PANJANG!</span>
       </div>
 
       <section class="form-card" aria-labelledby="form-title">
         <div class="card-heading">
-          <div><span class="card-kicker">MULAI DARI SINI</span><h2 id="form-title">Bikin shortlink</h2></div>
-          <span class="card-step" aria-hidden="true">01</span>
+          <div><span class="card-kicker">01 / SIAPKAN LINK</span><h2 id="form-title">Bikin shortlink</h2></div>
+          <span class="card-spark" aria-hidden="true">✳</span>
         </div>
         <form id="shortlink-form" novalidate>
           <label for="destination">Link tujuan</label>
@@ -56,7 +63,7 @@
             <span class="alias-hash" aria-hidden="true">#</span>
             <input id="alias" name="alias" type="text" placeholder="notulen-rapat" autocomplete="off" maxlength="48" required aria-describedby="alias-help">
           </div>
-          <p class="field-hint" id="alias-help">Gunakan huruf, angka, tanda hubung, atau garis bawah.</p>
+          <p class="field-hint" id="alias-help">Huruf, angka, tanda hubung, atau garis bawah.</p>
 
           <div class="preview-box">
             <span class="preview-label">PREVIEW SHORTLINK</span>
@@ -65,13 +72,13 @@
           <button class="primary-button" type="submit">Buat shortlink <span aria-hidden="true">↗</span></button>
           <div id="form-message" class="form-message" role="status" aria-live="polite" hidden></div>
         </form>
-        <div class="static-note"><span class="note-icon" aria-hidden="true">i</span><span>Versi ini statis. Link baru aktif untuk semua orang setelah ditambahkan pemilik situs ke daftar link.</span></div>
+        <div class="static-note"><span class="note-icon" aria-hidden="true">!</span><span>Link baru perlu ditambahkan pemilik situs sebelum aktif untuk semua orang.</span></div>
       </section>
     </section>
 
     <section class="links-section" id="link-pilihan" aria-labelledby="links-title">
       <div class="section-heading">
-        <div><span class="card-kicker">YANG SUDAH SIAP</span><h2 id="links-title">Link pendek pilihan</h2></div>
+        <div><span class="card-kicker">02 / SIAP DIBAGIKAN</span><h2 id="links-title">Link pendek pilihan</h2></div>
         <span id="link-count" class="link-count"></span>
       </div>
       <div id="links-list" class="links-list" aria-live="polite"></div>
@@ -81,13 +88,13 @@
     <section class="how-section" id="cara-kerja" aria-labelledby="how-title">
       <div class="how-title">
         <span class="card-kicker">NGGAK PAKE RIBET</span>
-        <h2 id="how-title">Bagikan dalam<br><span>dua langkah.</span></h2>
+        <h2 id="how-title">Dua langkah.<br><span>Satu link rapi.</span></h2>
         <p>Semua link yang siap pakai bisa ditemukan di satu tempat.</p>
       </div>
       <div class="steps">
         <article class="step">
           <span class="step-number">01</span>
-          <div><h3>Siapkan link tujuan</h3><p>Salin URL dokumen atau halaman yang ingin kamu bagikan.</p></div>
+          <div><h3>Tempel link tujuan</h3><p>Salin URL dokumen atau halaman yang ingin kamu bagikan.</p></div>
         </article>
         <article class="step">
           <span class="step-number">02</span>
@@ -99,9 +106,14 @@
   </main>
 
   <footer>
-    <a class="brand footer-brand" href="./"><span class="brand-mark" aria-hidden="true">p.</span><span>pangkas<span class="brand-dot">.</span>in</span></a>
-    <span class="footer-tagline">Link ringkas, pikiran lega.</span>
-    <span class="footer-copyright">© 2026 Pangkas.in</span>
+    <a class="brand footer-brand" href="./" aria-label="Pangkas.in beranda">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" role="img" aria-label=""><circle cx="8" cy="9" r="4" fill="#fff9ed" stroke="currentColor" stroke-width="2.6"/><circle cx="8" cy="23" r="4" fill="#fff9ed" stroke="currentColor" stroke-width="2.6"/><path d="m11.5 11.5 13 11m-13 0 13-11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3"/></svg>
+      </span>
+      <span class="brand-word">pangkas<span class="brand-dot">.</span>in</span>
+    </a>
+    <span class="footer-tagline">LINK RINGKAS. BERES.</span>
+    <span class="footer-copyright">© 2026 PANGKAS.IN</span>
   </footer>
 </body>
 </html>

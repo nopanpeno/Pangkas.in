@@ -3,23 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f6f2">
-  <title>Shortlink — Pangkas.in</title>
+  <meta name="theme-color" content="#fff9ed">
+  <title>Shortlink tidak ditemukan — Pangkas.in</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f6f2;color:#1d2d25;font-family:"DM Sans",sans-serif;padding:24px}.panel{width:min(100%,460px);padding:42px 34px;background:#fff;border:1px solid #e8ece6;border-radius:18px;text-align:center;box-shadow:0 14px 45px #2438270a}.mark{display:grid;place-items:center;margin:0 auto 22px;width:48px;height:48px;border-radius:14px;background:#3f6549;color:#d6ee75;font:800 23px Manrope,sans-serif}.eyebrow{font-size:10px;letter-spacing:1.6px;color:#3f6549;font-weight:700}.code{font:800 58px Manrope,sans-serif;letter-spacing:-3px;margin:12px 0 0}.message{font-size:14px;line-height:1.75;color:#68756c;margin:8px auto 24px}.home{display:inline-block;padding:12px 18px;border-radius:9px;background:#3f6549;color:#fff;text-decoration:none;font-weight:700;font-size:12px}.home:hover{background:#31523a}.error{font-size:11px;color:#9d432e;margin-top:15px}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background-color:#fff9ed;background-image:radial-gradient(#171717 1px,transparent 1.4px);background-size:24px 24px;color:#171717;font-family:"DM Sans",sans-serif}.panel{width:min(100%,470px);padding:clamp(24px,7vw,42px);border:3px solid #171717;border-radius:5px;background:#fffefa;box-shadow:8px 8px 0 #171717;text-align:center}.mark{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 18px;border:2.5px solid #171717;border-radius:5px;background:#f7ff64;box-shadow:4px 4px 0 #171717;transform:rotate(-4deg)}.mark svg{width:37px;height:37px}.eyebrow{display:inline-block;padding:6px 9px;border:2px solid #171717;background:#ff9dc7;font:700 9px "Space Grotesk",sans-serif;letter-spacing:1px}.code{overflow-wrap:anywhere;margin:18px 0 0;font:700 clamp(38px,12vw,62px)/1.05 "Space Grotesk",sans-serif;letter-spacing:-.07em}.message{margin:13px auto 23px;color:#4e4a44;font-size:14px;line-height:1.7}.home{display:inline-block;padding:12px 16px;border:2px solid #171717;border-radius:3px;background:#a8c4ff;box-shadow:4px 4px 0 #171717;color:#171717;font:700 11px "Space Grotesk",sans-serif;text-decoration:none;transition:transform .12s,box-shadow .12s}.home:hover{transform:translate(3px,3px);box-shadow:1px 1px 0 #171717}
   </style>
 </head>
 <body>
   <main class="panel">
-    <div class="mark" aria-hidden="true">p.</div>
-    <div class="eyebrow">PANGKAS.IN</div>
+    <div class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="8" cy="9" r="4" fill="#fff9ed" stroke="#171717" stroke-width="2.6"/><circle cx="8" cy="23" r="4" fill="#fff9ed" stroke="#171717" stroke-width="2.6"/><path d="m11.5 11.5 13 11m-13 0 13-11" stroke="#171717" stroke-linecap="round" stroke-width="3"/></svg></div>
+    <div class="eyebrow">PANGKAS.IN / SHORTLINK</div>
     <h1 class="code" id="code">…</h1>
     <p class="message" id="message">Sedang mencari tujuan link kamu…</p>
-    <a class="home" id="home" href="./">Kembali ke beranda</a>
-    <p class="error" id="error" hidden></p>
+    <a class="home" id="home" href="./">↖ Kembali ke beranda</a>
   </main>
   <script>
     (async function () {
