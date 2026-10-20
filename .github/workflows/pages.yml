@@ -28,10 +28,8 @@ jobs:
         run: node scripts/links.mjs check
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Prepare static site
-        run: |
-          mkdir -p _site
-          cp index.html styles.css app.js links.json 404.html _site/
+      - name: Build static site
+        run: node scripts/links.mjs build _site
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v4
         with:

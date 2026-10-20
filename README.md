@@ -29,4 +29,19 @@ Setiap penerbitan juga menjalankan `node scripts/links.mjs check`. Jika `links.j
 
 ## GitHub Pages
 
-Di Settings → Pages, atur **Source** ke **GitHub Actions**. Situs diterbitkan oleh `.github/workflows/pages.yml`, bukan langsung dari folder branch. File `404.html` mencari alias terakhir di path, mengambil tujuan dari `links.json`, lalu mengalihkan pengunjung. Path ini bekerja untuk domain khusus maupun URL GitHub Pages berbasis nama repo.
+Di Settings → Pages, atur **Source** ke **GitHub Actions**. Situs diterbitkan oleh `.github/workflows/pages.yml`, bukan langsung dari folder branch.
+
+Saat penerbitan, `node scripts/links.mjs build _site` menyalin file situs lalu membuat satu halaman kecil per alias di `_site/<alias>/index.html`. Halaman itu disajikan dengan status 200 dan langsung mengalihkan pengunjung ke tujuan, jadi tidak ada lagi halaman 404 yang berkedip sebelum pindah.
+
+File `404.html` tetap ada sebagai cadangan, misalnya untuk alias yang salah huruf besar/kecil. Ia mencari alias terakhir di path, mengambil tujuan dari `links.json`, lalu mengalihkan pengunjung. Path ini bekerja untuk domain khusus maupun URL GitHub Pages berbasis nama repo.
+
+Nama `fonts` dipakai oleh folder situs, jadi tidak bisa menjadi alias.
+
+## Cek build lokal
+
+```sh
+node scripts/links.mjs build /tmp/situs
+python3 -m http.server --directory /tmp/situs 8000
+```
+
+Folder keluaran harus belum ada.
