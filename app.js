@@ -1,4 +1,6 @@
 const ALIAS_PATTERN = /^[a-zA-Z0-9_-]+$/;
+const RESERVED_ALIASES = ["fonts"];
+const WORKFLOW_URL = "https://github.com/nopanpeno/pangkas.in/actions/workflows/add-link.yml";
 const form = document.querySelector("#shortlink-form");
 const aliasField = document.querySelector("#alias");
 const destinationField = document.querySelector("#destination");
@@ -54,6 +56,25 @@ async function copyText(value) {
   const copied = document.execCommand("copy");
   temporary.remove();
   if (!copied) throw new Error("copy_failed");
+}
+
+function copyInlineButton(label, value) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "copy-inline";
+  button.textContent = label;
+  button.addEventListener("click", async () => {
+    try {
+      await copyText(value);
+      button.textContent = "Tersalin ✓";
+    } catch {
+      button.textContent = "Gagal menyalin";
+    }
+    window.setTimeout(() => {
+      button.textContent = label;
+    }, 1500);
+  });
+  return button;
 }
 
 function renderLinks(links) {
@@ -115,7 +136,7 @@ async function loadLinks() {
   } catch {
     renderLinks({});
     showMessage("Daftar link belum dapat dimuat. Coba muat ulang halaman atau hubungi pemilik situs.");
-    return {};
+    return null;
   }
 }
 
@@ -146,38 +167,38 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (RESERVED_ALIASES.includes(alias.toLowerCase())) {
+    showMessage("Nama pendek ini dipakai oleh situs. Coba alias lain.");
+    aliasField.focus();
+    return;
+  }
+
   const links = await loadLinks();
+  if (!links) {
+    // Daftar tidak termuat, jadi cek alias ganda tidak bisa dipercaya. Pesan sudah tampil.
+    return;
+  }
   if (Object.keys(links).some((registered) => registered.toLowerCase() === alias.toLowerCase())) {
     showMessage("Nama pendek ini sudah dipakai. Coba alias lain.");
     aliasField.focus();
     return;
   }
 
-  const proposedUrl = shortUrl(alias);
   message.replaceChildren();
-  message.append("Draft siap: ");
-  const resultLink = document.createElement("a");
-  resultLink.href = proposedUrl;
-  resultLink.textContent = proposedUrl;
-  resultLink.target = "_blank";
-  resultLink.rel = "noopener noreferrer";
-  message.append(resultLink, document.createElement("br"));
-  const instruction = document.createElement("span");
-  instruction.textContent = "Agar shortlink aktif untuk semua orang, pemilik situs perlu menambahkan alias dan URL tujuan ke links.json lalu menerbitkan ulang situs.";
-  message.append(instruction, document.createElement("br"));
-  const copyButton = document.createElement("button");
-  copyButton.type = "button";
-  copyButton.className = "copy-inline";
-  copyButton.textContent = "Salin draft";
-  copyButton.addEventListener("click", async () => {
-    try {
-      await copyText(proposedUrl);
-      copyButton.textContent = "Tersalin ✓";
-    } catch {
-      copyButton.textContent = "Gagal menyalin";
-    }
-  });
-  message.append(copyButton);
+  const title = document.createElement("strong");
+  title.textContent = `Siap ditambahkan: ${shortUrl(alias)}`;
+  const steps = document.createElement("span");
+  steps.textContent = "Buka workflow “Tambah shortlink” di GitHub, tekan Run workflow, lalu tempel alias dan link tujuan (tombol salin ada di bawah). Link aktif sekitar 1–2 menit kemudian.";
+  const actions = document.createElement("div");
+  actions.className = "message-actions";
+  const workflow = document.createElement("a");
+  workflow.className = "copy-inline";
+  workflow.href = WORKFLOW_URL;
+  workflow.target = "_blank";
+  workflow.rel = "noopener noreferrer";
+  workflow.textContent = "Buka workflow ↗";
+  actions.append(copyInlineButton("Salin alias", alias), copyInlineButton("Salin link tujuan", destination), workflow);
+  message.append(title, document.createElement("br"), steps, actions);
   message.className = "form-message success";
   message.hidden = false;
 });

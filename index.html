@@ -6,9 +6,8 @@
   <meta name="theme-color" content="#fff9ed">
   <meta name="description" content="Pangkas.in membantu kamu membagikan tautan panjang dengan lebih ringkas.">
   <title>Pangkas.in — Link panjang? Pangkas aja.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="./fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
 </head>
@@ -47,7 +46,7 @@
 
       <section class="form-card" aria-labelledby="form-title">
         <div class="card-heading">
-          <div><span class="card-kicker">01 / SIAPKAN LINK</span><h2 id="form-title">Bikin shortlink</h2></div>
+          <div><span class="card-kicker">01 / SIAPKAN LINK</span><h2 id="form-title">Siapkan shortlink</h2></div>
           <span class="card-spark" aria-hidden="true">✳</span>
         </div>
         <form id="shortlink-form" novalidate>
@@ -69,10 +68,10 @@
             <span class="preview-label">PREVIEW SHORTLINK</span>
             <code id="alias-preview" aria-live="polite"></code>
           </div>
-          <button class="primary-button" type="submit">Buat shortlink <span aria-hidden="true">↗</span></button>
+          <button class="primary-button" type="submit">Cek &amp; siapkan <span aria-hidden="true">↗</span></button>
           <div id="form-message" class="form-message" role="status" aria-live="polite" hidden></div>
         </form>
-        <div class="static-note"><span class="note-icon" aria-hidden="true">!</span><span>Link baru perlu ditambahkan pemilik situs sebelum aktif untuk semua orang.</span></div>
+        <div class="static-note"><span class="note-icon" aria-hidden="true">!</span><span>Link baru aktif setelah pemilik situs menjalankan workflow “Tambah shortlink” di GitHub, biasanya 1–2 menit.</span></div>
       </section>
     </section>
 
@@ -82,7 +81,7 @@
         <span id="link-count" class="link-count"></span>
       </div>
       <div id="links-list" class="links-list" aria-live="polite"></div>
-      <div id="links-empty" class="empty-state" hidden>Belum ada shortlink. Pemilik situs bisa menambahkan link melalui <code>links.json</code>.</div>
+      <div id="links-empty" class="empty-state" hidden>Belum ada shortlink. Pemilik situs bisa menambahkan link lewat workflow <code>Tambah shortlink</code> di GitHub.</div>
     </section>
 
     <section class="how-section" id="cara-kerja" aria-labelledby="how-title">

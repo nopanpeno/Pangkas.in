@@ -4,7 +4,7 @@ Aplikasi shortlink sederhana untuk membagikan URL panjang dengan nama pendek.
 
 ## Cara kerja
 
-Pangkas.in versi pertama adalah situs statis yang bisa diterbitkan melalui GitHub Pages. Tidak ada backend atau database, jadi draft yang dibuat di form belum otomatis tersimpan untuk semua pengunjung. Agar shortlink aktif, pemilik situs perlu menambahkan pasangan alias dan URL tujuan di `links.json`, lalu menerbitkan ulang situs.
+Pangkas.in versi pertama adalah situs statis yang bisa diterbitkan melalui GitHub Pages. Tidak ada backend atau database, jadi form di beranda hanya menyiapkan dan memeriksa alias (format, alias ganda, nama terlarang), tidak menyimpannya. Agar shortlink aktif, pemilik situs menambahkan pasangan alias dan URL tujuan ke `links.json` lalu menerbitkan ulang situs. Cara paling mudah adalah workflow **Tambah shortlink** (lihat di bawah). Setelah form selesai memeriksa, ia menyediakan tombol salin untuk alias dan link tujuan, plus tautan ke workflow itu.
 
 ```json
 {
@@ -29,4 +29,23 @@ Setiap penerbitan juga menjalankan `node scripts/links.mjs check`. Jika `links.j
 
 ## GitHub Pages
 
-Di Settings → Pages, atur **Source** ke **GitHub Actions**. Situs diterbitkan oleh `.github/workflows/pages.yml`, bukan langsung dari folder branch. File `404.html` mencari alias terakhir di path, mengambil tujuan dari `links.json`, lalu mengalihkan pengunjung. Path ini bekerja untuk domain khusus maupun URL GitHub Pages berbasis nama repo.
+Di Settings → Pages, atur **Source** ke **GitHub Actions**. Situs diterbitkan oleh `.github/workflows/pages.yml`, bukan langsung dari folder branch.
+
+Saat penerbitan, `node scripts/links.mjs build _site` menyalin file situs lalu membuat satu halaman kecil per alias di `_site/<alias>/index.html`. Halaman itu disajikan dengan status 200 dan langsung mengalihkan pengunjung ke tujuan, jadi tidak ada lagi halaman 404 yang berkedip sebelum pindah.
+
+File `404.html` tetap ada sebagai cadangan, misalnya untuk alias yang salah huruf besar/kecil. Ia mencari alias terakhir di path, mengambil tujuan dari `links.json`, lalu mengalihkan pengunjung. Path ini bekerja untuk domain khusus maupun URL GitHub Pages berbasis nama repo.
+
+Nama `fonts` dipakai oleh folder situs, jadi tidak bisa menjadi alias.
+
+## Font
+
+DM Sans dan Space Grotesk disimpan di folder `fonts/` (subset Latin, format woff2 variable) dan dimuat dari situs sendiri, bukan dari Google Fonts. Keduanya berlisensi SIL Open Font License 1.1, teks lisensinya ada di folder yang sama. Halaman `404.html` memakai font bawaan sistem karena ia bisa tampil di path mana saja.
+
+## Cek build lokal
+
+```sh
+node scripts/links.mjs build /tmp/situs
+python3 -m http.server --directory /tmp/situs 8000
+```
+
+Folder keluaran harus belum ada.
