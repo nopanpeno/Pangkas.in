@@ -4,7 +4,7 @@ Aplikasi shortlink sederhana untuk membagikan URL panjang dengan nama pendek.
 
 ## Cara kerja
 
-Pangkas.in versi pertama adalah situs statis yang bisa diterbitkan melalui GitHub Pages. Tidak ada backend atau database, jadi draft yang dibuat di form belum otomatis tersimpan untuk semua pengunjung. Agar shortlink aktif, pemilik situs perlu menambahkan pasangan alias dan URL tujuan di `links.json`, lalu menerbitkan ulang situs.
+Pangkas.in versi pertama adalah situs statis yang bisa diterbitkan melalui GitHub Pages. Tidak ada backend atau database, jadi form di beranda hanya menyiapkan dan memeriksa alias (format, alias ganda, nama terlarang), tidak menyimpannya. Agar shortlink aktif, pemilik situs menambahkan pasangan alias dan URL tujuan ke `links.json` lalu menerbitkan ulang situs. Cara paling mudah adalah workflow **Tambah shortlink** (lihat di bawah). Setelah form selesai memeriksa, ia menyediakan tombol salin untuk alias dan link tujuan, plus tautan ke workflow itu.
 
 ```json
 {
