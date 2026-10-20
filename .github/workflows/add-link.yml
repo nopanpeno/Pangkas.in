@@ -1,0 +1,51 @@
+name: Tambah shortlink
+
+on:
+  workflow_dispatch:
+    inputs:
+      alias:
+        description: "Nama pendek (huruf, angka, - atau _)"
+        required: true
+        type: string
+      url:
+        description: "Link tujuan (http:// atau https://)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: add-link
+  cancel-in-progress: false
+
+jobs:
+  add:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Tambah ke links.json
+        env:
+          LINK_ALIAS: ${{ inputs.alias }}
+          LINK_URL: ${{ inputs.url }}
+        run: node scripts/links.mjs add
+
+      - name: Cek seluruh links.json
+        run: node scripts/links.mjs check
+
+      - name: Commit dan terbitkan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LINK_ALIAS: ${{ inputs.alias }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add links.json
+          git commit -m "Tambah shortlink /${LINK_ALIAS}"
+          git push
+          # Push dari GITHUB_TOKEN tidak memicu pages.yml, jadi dipicu manual.
+          gh workflow run pages.yml --ref "$GITHUB_REF_NAME"

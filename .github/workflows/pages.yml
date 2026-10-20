@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Validate links.json
+        run: node scripts/links.mjs check
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Prepare static site
