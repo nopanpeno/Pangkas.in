@@ -37,6 +37,10 @@ File `404.html` tetap ada sebagai cadangan, misalnya untuk alias yang salah huru
 
 Nama `fonts` dipakai oleh folder situs, jadi tidak bisa menjadi alias.
 
+## Font
+
+DM Sans dan Space Grotesk disimpan di folder `fonts/` (subset Latin, format woff2 variable) dan dimuat dari situs sendiri, bukan dari Google Fonts. Keduanya berlisensi SIL Open Font License 1.1, teks lisensinya ada di folder yang sama. Halaman `404.html` memakai font bawaan sistem karena ia bisa tampil di path mana saja.
+
 ## Cek build lokal
 
 ```sh
