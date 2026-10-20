@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>Shortlink — Pangkas.in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f6f2;color:#1d2d25;font-family:"DM Sans",sans-serif;padding:24px}.panel{width:min(100%,460px);padding:42px 34px;background:#fff;border:1px solid #e8ece6;border-radius:18px;text-align:center;box-shadow:0 14px 45px #2438270a}.mark{display:grid;place-items:center;margin:0 auto 22px;width:48px;height:48px;border-radius:14px;background:#3f6549;color:#d6ee75;font:800 23px Manrope,sans-serif}.eyebrow{font-size:10px;letter-spacing:1.6px;color:#3f6549;font-weight:700}.code{font:800 58px Manrope,sans-serif;letter-spacing:-3px;margin:12px 0 0}.message{font-size:14px;line-height:1.75;color:#68756c;margin:8px auto 24px}.home{display:inline-block;padding:12px 18px;border-radius:9px;background:#3f6549;color:#fff;text-decoration:none;font-weight:700;font-size:12px}.home:hover{background:#31523a}.error{font-size:11px;color:#9d432e;margin-top:15px}
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <div class="mark" aria-hidden="true">p.</div>
+    <div class="eyebrow">PANGKAS.IN</div>
+    <h1 class="code" id="code">…</h1>
+    <p class="message" id="message">Sedang mencari tujuan link kamu…</p>
+    <a class="home" id="home" href="./">Kembali ke beranda</a>
+    <p class="error" id="error" hidden></p>
+  </main>
+  <script>
+    (async function () {
+      const path = decodeURIComponent(window.location.pathname).replace(/\/$/, "");
+      const alias = path.split("/").pop();
+      const home = new URL("./", window.location.href);
+      document.querySelector("#home").href = home.href;
+      document.querySelector("#code").textContent = "/" + alias;
+      if (!alias || alias.toLowerCase() === "404.html") {
+        document.querySelector("#message").textContent = "Halaman ini tidak tersedia.";
+        return;
+      }
+      try {
+        const response = await fetch(new URL("links.json", home));
+        if (!response.ok) throw new Error("config");
+        const links = await response.json();
+        const key = Object.keys(links).find((item) => item.toLowerCase() === alias.toLowerCase());
+        const target = key && links[key];
+        if (target) {
+          const destination = new URL(target);
+          if (["http:", "https:"].includes(destination.protocol)) {
+            document.querySelector("#message").textContent = "Link ditemukan. Kamu akan segera dialihkan.";
+            window.location.replace(destination.href);
+            return;
+          }
+        }
+        document.querySelector("#message").textContent = "Shortlink tidak ditemukan. Mungkin alias-nya salah atau belum terdaftar.";
+      } catch {
+        document.querySelector("#message").textContent = "Daftar shortlink tidak dapat dimuat saat ini.";
+      }
+    })();
+  </script>
+</body>
+</html>
