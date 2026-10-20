@@ -6,10 +6,20 @@ const message = document.querySelector("#form-message");
 const list = document.querySelector("#links-list");
 const count = document.querySelector("#link-count");
 const empty = document.querySelector("#links-empty");
-const aliasPrefix = document.querySelector("#alias-prefix");
+const aliasPreview = document.querySelector("#alias-preview");
 
 const siteBase = new URL("./", window.location.href);
-aliasPrefix.textContent = siteBase.host + siteBase.pathname;
+
+function shortUrl(alias) {
+  return new URL(encodeURIComponent(alias), siteBase).href;
+}
+
+function updateAliasPreview() {
+  const alias = aliasField.value.trim();
+  aliasPreview.textContent = alias ? shortUrl(alias) : `${siteBase.host}${siteBase.pathname}nama-link`;
+}
+updateAliasPreview();
+aliasField.addEventListener("input", updateAliasPreview);
 
 function showMessage(text, type = "error") {
   message.textContent = text;
@@ -44,10 +54,6 @@ async function copyText(value) {
   const copied = document.execCommand("copy");
   temporary.remove();
   if (!copied) throw new Error("copy_failed");
-}
-
-function shortUrl(alias) {
-  return new URL(encodeURIComponent(alias), siteBase).href;
 }
 
 function renderLinks(links) {
