@@ -45,12 +45,23 @@ body {
   margin: 0;
   min-width: 320px;
   background-color: var(--paper);
-  background-image: radial-gradient(#171717 1px,transparent 1.4px);
-  background-position: 20px 22px;
-  background-size: 24px 24px;
   color: var(--ink);
   font-family: var(--body);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Titik latar diam di layar; hanya isi halaman yang bergerak saat scroll.
+   Pakai elemen fixed, bukan background-attachment: fixed, karena yang kedua
+   diabaikan di iOS Safari. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(#171717 1px,transparent 1.4px);
+  background-position: 20px 22px;
+  background-size: 24px 24px;
 }
 
 .site-header,
