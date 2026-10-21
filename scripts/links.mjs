@@ -11,7 +11,7 @@ const GOOGLE_NOISE = ["ouid", "rtpof", "sd"];
 const TRACKING = [/^utm_/i, /^fbclid$/i, /^gclid$/i];
 
 // Isi situs yang diterbitkan. Nama folder di sini tidak boleh jadi alias.
-const SITE_FILES = ["index.html", "404.html", "styles.css", "app.js"];
+const SITE_FILES = ["index.html", "404.html", "styles.css", "app.js", "favicon.svg", "apple-touch-icon.png"];
 const SITE_DIRS = ["fonts"];
 const RESERVED = SITE_DIRS;
 

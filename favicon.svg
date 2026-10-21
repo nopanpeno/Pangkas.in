@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <title>Pangkas.in</title>
+  <rect x="10" y="10" width="236" height="236" rx="48" fill="#f7ff64" stroke="#171717" stroke-width="14"/>
+  <path fill="#171717" fill-rule="evenodd" transform="translate(128 128) scale(.9) translate(-128 -128)" d="M61,42 H135 A60,60 0 0 1 135,162 H105 V194 L61,214 Z M105,86 H135 A16,16 0 0 1 135,118 H105 Z"/>
+</svg>
