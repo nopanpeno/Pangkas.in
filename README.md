@@ -37,6 +37,16 @@ File `404.html` tetap ada sebagai cadangan, misalnya untuk alias yang salah huru
 
 Nama `fonts` dipakai oleh folder situs, jadi tidak bisa menjadi alias.
 
+## Logo
+
+Logo Pangkas.in adalah huruf **P** yang kakinya dipotong miring. Potongan kakinya terpisah, seperti link panjang yang dipangkas.
+
+- `logo/pangkas-p.svg`: versi utama (hitam). `logo/pangkas-p-putih.svg` untuk latar gelap.
+- `logo/pangkas-p-kecil.svg`: tanpa potongan kaki. Dipakai di bawah 24 px (footer, favicon), karena di ukuran itu potongan kaki menjadi noda.
+- `favicon.svg` dan `apple-touch-icon.png` (sumbernya `logo/apple-touch-icon.svg`) sudah terpasang di `index.html` dan `404.html`.
+
+Warna logo: tinta `#171717` di atas kuning `#f7ff64`. Tulisan "pangkas.in" di header masih teks biasa (Space Grotesk), belum digambar sebagai bentuk huruf.
+
 ## Font
 
 DM Sans dan Space Grotesk disimpan di folder `fonts/` (subset Latin, format woff2 variable) dan dimuat dari situs sendiri, bukan dari Google Fonts. Keduanya berlisensi SIL Open Font License 1.1, teks lisensinya ada di folder yang sama. Halaman `404.html` memakai font bawaan sistem karena ia bisa tampil di path mana saja.
