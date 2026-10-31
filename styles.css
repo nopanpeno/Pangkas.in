@@ -576,6 +576,25 @@ input::placeholder {
   transition: transform .12s,box-shadow .12s;
 }
 
+.delete-button {
+  flex: none;
+  height: 37px;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--pink);
+  box-shadow: 2px 2px 0 var(--ink);
+  color: var(--ink);
+  font: 700 11px var(--display);
+  cursor: pointer;
+  transition: transform .12s,box-shadow .12s;
+}
+
+.delete-button:hover {
+  transform: translate(2px,2px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
 .copy-button:hover {
   transform: translate(2px,2px);
   box-shadow: 0 0 0 var(--ink);

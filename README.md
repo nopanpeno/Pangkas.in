@@ -19,6 +19,10 @@ Alias hanya boleh memakai huruf, angka, tanda hubung, dan garis bawah. Alias har
 
 Buka repo melalui server web statis, misalnya ekstensi Live Server di editor. Jangan membuka `index.html` sebagai file langsung karena browser membatasi pembacaan `links.json` dari file lokal.
 
+## Hapus link lewat GitHub Actions
+
+Tombol **Hapus** di setiap kartu link membuka panduan singkat dan menyalin alias. Lalu jalankan workflow **Hapus shortlink** (Actions → Run workflow) dan tempel alias. Workflow menghapus baris dari `links.json`, lalu menerbitkan ulang situs. Link mati sekitar 1–2 menit kemudian.
+
 ## Tambah link lewat GitHub Actions
 
 Buka tab **Actions** di repo (atau aplikasi GitHub di HP), pilih **Tambah shortlink**, tekan **Run workflow**, lalu isi alias dan link tujuan. Workflow memvalidasi input, membuang parameter pelacak (`utm_*`, `fbclid`, `gclid`) dan ID akun Google (`ouid`, `rtpof`, `sd`) dari link Google Docs/Drive, menambahkan baris ke `links.json`, lalu menerbitkan ulang situs. Link aktif sekitar 1–2 menit kemudian.
