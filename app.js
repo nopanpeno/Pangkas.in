@@ -11,6 +11,8 @@ const empty = document.querySelector("#links-empty");
 const aliasPreview = document.querySelector("#alias-preview");
 
 const siteBase = new URL("./", window.location.href);
+// Ikon salin: dua persegi, digambar SVG (bukan karakter).
+const COPY_ICON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
 
 function shortUrl(alias) {
   return new URL(encodeURIComponent(alias), siteBase).href;
@@ -66,7 +68,7 @@ function copyInlineButton(label, value) {
   button.addEventListener("click", async () => {
     try {
       await copyText(value);
-      button.textContent = "Tersalin ✓";
+      button.textContent = "Tersalin";
     } catch {
       button.textContent = "Gagal menyalin";
     }
@@ -86,10 +88,6 @@ function renderLinks(links) {
   for (const [alias, destination] of entries) {
     const card = document.createElement("article");
     card.className = "link-card";
-    const icon = document.createElement("span");
-    icon.className = "link-icon";
-    icon.setAttribute("aria-hidden", "true");
-    icon.textContent = "↗";
     const info = document.createElement("div");
     info.className = "link-info";
     const link = document.createElement("a");
@@ -106,21 +104,21 @@ function renderLinks(links) {
     button.type = "button";
     button.setAttribute("aria-label", `Salin shortlink ${alias}`);
     button.title = "Salin shortlink";
-    button.textContent = "⧉";
+    button.innerHTML = COPY_ICON;
     button.addEventListener("click", async () => {
       try {
         await copyText(link.href);
-        button.textContent = "✓";
+        button.textContent = "OK";
         button.setAttribute("aria-label", `Shortlink ${alias} disalin`);
         window.setTimeout(() => {
-          button.textContent = "⧉";
+          button.innerHTML = COPY_ICON;
           button.setAttribute("aria-label", `Salin shortlink ${alias}`);
         }, 1500);
       } catch {
         showMessage("Gagal menyalin otomatis. Pilih dan salin alamat shortlink secara manual.");
       }
     });
-    card.append(icon, info, button);
+    card.append(info, button);
     list.append(card);
   }
 }
@@ -196,7 +194,7 @@ form.addEventListener("submit", async (event) => {
   workflow.href = WORKFLOW_URL;
   workflow.target = "_blank";
   workflow.rel = "noopener noreferrer";
-  workflow.textContent = "Buka workflow ↗";
+  workflow.textContent = "Buka workflow";
   actions.append(copyInlineButton("Salin alias", alias), copyInlineButton("Salin link tujuan", destination), workflow);
   message.append(title, document.createElement("br"), steps, actions);
   message.className = "form-message success";

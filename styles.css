@@ -157,10 +157,6 @@ footer {
   box-shadow: 1px 1px 0 var(--ink);
 }
 
-.header-link span {
-  padding-left: 6px;
-}
-
 .hero {
   position: relative;
   display: grid;
@@ -190,10 +186,6 @@ footer {
   border: 2px solid var(--ink);
   background: var(--pink);
   box-shadow: 3px 3px 0 var(--ink);
-}
-
-.eyebrow-star {
-  font-size: 14px;
 }
 
 h1,
@@ -248,11 +240,6 @@ h1 span {
   font-weight: 700;
 }
 
-.hero-benefits b {
-  color: var(--green);
-  font-size: 12px;
-}
-
 .hero-scroll {
   display: inline-flex;
   align-items: center;
@@ -262,23 +249,6 @@ h1 span {
   font: 700 11px var(--display);
   letter-spacing: .7px;
   text-decoration: none;
-}
-
-.scroll-icon {
-  display: grid;
-  place-items: center;
-  width: 27px;
-  height: 27px;
-  border: 2px solid var(--ink);
-  border-radius: 3px;
-  background: var(--blue);
-  box-shadow: 2px 2px 0 var(--ink);
-  font-size: 15px;
-  transition: transform .12s;
-}
-
-.hero-scroll:hover .scroll-icon {
-  transform: translateY(2px);
 }
 
 .hero-sticker {
@@ -332,18 +302,6 @@ h1 span {
   letter-spacing: -1px;
 }
 
-.card-spark {
-  display: grid;
-  place-items: center;
-  width: 35px;
-  height: 35px;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  background: var(--pink);
-  font-size: 19px;
-  transform: rotate(7deg);
-}
-
 form label {
   display: block;
   margin-bottom: 8px;
@@ -365,12 +323,6 @@ form label {
 .alias-wrap:focus-within {
   transform: translate(-1px,-1px);
   box-shadow: 3px 3px 0 var(--blue);
-}
-
-.input-icon {
-  padding-left: 13px;
-  color: var(--green);
-  font-size: 16px;
 }
 
 .alias-hash {
@@ -579,19 +531,6 @@ input::placeholder {
   box-shadow: 2px 2px 0 var(--ink);
 }
 
-.link-icon {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: 39px;
-  height: 39px;
-  border: 2px solid var(--ink);
-  border-radius: 3px;
-  background: var(--yellow);
-  color: var(--ink);
-  font-size: 17px;
-}
-
 .link-info {
   min-width: 0;
   flex: 1;
@@ -733,10 +672,6 @@ input::placeholder {
   border-top: 2px solid var(--ink);
   font-size: 12px;
   line-height: 1.6;
-}
-
-.how-footnote span {
-  font-size: 15px;
 }
 
 footer {
