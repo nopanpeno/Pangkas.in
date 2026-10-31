@@ -1,5 +1,6 @@
 // Pakai: node scripts/links.mjs check
 //        LINK_ALIAS=nama LINK_URL=https://... node scripts/links.mjs add
+//        LINK_ALIAS=nama node scripts/links.mjs remove
 //        node scripts/links.mjs build _site
 import { appendFileSync, cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -119,6 +120,23 @@ function add() {
   }
 }
 
+function remove() {
+  const alias = (process.env.LINK_ALIAS || "").trim();
+  if (!alias) fail("Alias wajib diisi.");
+  const links = loadLinks();
+  const key = Object.keys(links).find((item) => item.toLowerCase() === alias.toLowerCase());
+  if (!key) fail(`Alias "${alias}" tidak ditemukan di ${FILE}.`);
+
+  const destination = links[key];
+  delete links[key];
+  writeFileSync(FILE, `${JSON.stringify(links, null, 2)}\n`);
+
+  console.log(`Dihapus: /${key} -> ${destination}`);
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    appendFileSync(process.env.GITHUB_STEP_SUMMARY, `Dihapus \`/${key}\` (dari ${destination})\n`);
+  }
+}
+
 function escapeHtml(value) {
   return value
     .replace(/&/g, "&amp;")
@@ -178,5 +196,6 @@ function build() {
 const command = process.argv[2];
 if (command === "check") check();
 else if (command === "add") add();
+else if (command === "remove") remove();
 else if (command === "build") build();
-else fail("Pakai: node scripts/links.mjs check|add|build");
+else fail("Pakai: node scripts/links.mjs check|add|remove|build");

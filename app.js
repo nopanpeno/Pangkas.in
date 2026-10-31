@@ -1,6 +1,7 @@
 const ALIAS_PATTERN = /^[a-zA-Z0-9_-]+$/;
 const RESERVED_ALIASES = ["fonts"];
 const WORKFLOW_URL = "https://github.com/nopanpeno/pangkas.in/actions/workflows/add-link.yml";
+const DELETE_WORKFLOW_URL = "https://github.com/nopanpeno/pangkas.in/actions/workflows/delete-link.yml";
 const form = document.querySelector("#shortlink-form");
 const aliasField = document.querySelector("#alias");
 const destinationField = document.querySelector("#destination");
@@ -118,9 +119,37 @@ function renderLinks(links) {
         showMessage("Gagal menyalin otomatis. Pilih dan salin alamat shortlink secara manual.");
       }
     });
-    card.append(info, button);
+    const remove = document.createElement("button");
+    remove.className = "delete-button";
+    remove.type = "button";
+    remove.setAttribute("aria-label", `Hapus shortlink ${alias}`);
+    remove.title = "Hapus shortlink";
+    remove.textContent = "Hapus";
+    remove.addEventListener("click", () => showDeleteHelp(alias));
+    card.append(info, button, remove);
     list.append(card);
   }
+}
+
+function showDeleteHelp(alias) {
+  message.replaceChildren();
+  const title = document.createElement("strong");
+  title.textContent = `Siap dihapus: /${alias}`;
+  const steps = document.createElement("span");
+  steps.textContent = "Buka workflow “Hapus shortlink” di GitHub, tekan Run workflow, lalu tempel alias (tombol salin ada di bawah). Link mati sekitar 1–2 menit kemudian.";
+  const actions = document.createElement("div");
+  actions.className = "message-actions";
+  const workflow = document.createElement("a");
+  workflow.className = "copy-inline";
+  workflow.href = DELETE_WORKFLOW_URL;
+  workflow.target = "_blank";
+  workflow.rel = "noopener noreferrer";
+  workflow.textContent = "Buka workflow";
+  actions.append(copyInlineButton("Salin alias", alias), workflow);
+  message.append(title, document.createElement("br"), steps, actions);
+  message.className = "form-message success";
+  message.hidden = false;
+  message.scrollIntoView({ block: "nearest" });
 }
 
 async function loadLinks() {
