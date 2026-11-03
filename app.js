@@ -13,6 +13,27 @@ const aliasPreview = document.querySelector("#alias-preview");
 
 const siteBase = new URL("./", window.location.href);
 // Ikon salin: dua persegi, digambar SVG (bukan karakter).
+// Kartu link "dipotong": garis gunting melintas, lalu kartu muncul saat terlihat.
+const cardObserver =
+  "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? new IntersectionObserver(
+        (items, observer) => {
+          for (const item of items) {
+            if (item.isIntersecting) {
+              item.target.classList.add("is-in");
+              observer.unobserve(item.target);
+            }
+          }
+        },
+        { threshold: 0.2 },
+      )
+    : null;
+
+function revealCard(card) {
+  if (cardObserver) cardObserver.observe(card);
+  else card.classList.add("is-in");
+}
+
 const COPY_ICON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
 
 function shortUrl(alias) {
@@ -86,9 +107,10 @@ function renderLinks(links) {
   empty.hidden = entries.length > 0;
   list.replaceChildren();
 
-  for (const [alias, destination] of entries) {
+  for (const [index, [alias, destination]] of entries.entries()) {
     const card = document.createElement("article");
     card.className = "link-card";
+    card.style.setProperty("--d", `${index * 90}ms`);
     const info = document.createElement("div");
     info.className = "link-info";
     const link = document.createElement("a");
@@ -128,6 +150,7 @@ function renderLinks(links) {
     remove.addEventListener("click", () => showDeleteHelp(alias));
     card.append(info, button, remove);
     list.append(card);
+    revealCard(card);
   }
 }
 
