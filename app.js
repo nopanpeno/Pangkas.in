@@ -253,4 +253,31 @@ form.addEventListener("submit", async (event) => {
   message.hidden = false;
 });
 
+// Titik latar bergeser sedikit mengikuti kursor (paralaks halus).
+// Hanya untuk mouse, dan dimatikan jika pengguna minta gerak minimal.
+if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const root = document.documentElement;
+  const RANGE = 6;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let frame = 0;
+
+  const tick = () => {
+    currentX += (targetX - currentX) * 0.12;
+    currentY += (targetY - currentY) * 0.12;
+    root.style.setProperty("--dx", `${currentX.toFixed(2)}px`);
+    root.style.setProperty("--dy", `${currentY.toFixed(2)}px`);
+    const settled = Math.abs(targetX - currentX) < 0.05 && Math.abs(targetY - currentY) < 0.05;
+    frame = settled ? 0 : requestAnimationFrame(tick);
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    targetX = (0.5 - event.clientX / window.innerWidth) * 2 * RANGE;
+    targetY = (0.5 - event.clientY / window.innerHeight) * 2 * RANGE;
+    if (!frame) frame = requestAnimationFrame(tick);
+  }, { passive: true });
+}
+
 loadLinks();
