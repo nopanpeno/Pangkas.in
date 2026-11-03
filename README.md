@@ -43,10 +43,10 @@ Nama `fonts` dipakai oleh folder situs, jadi tidak bisa menjadi alias.
 
 ## Logo
 
-Logo Pangkas.in adalah huruf **P** yang kakinya dipotong miring. Potongan kakinya terpisah, seperti link panjang yang dipangkas.
+Logo Pangkas.in adalah **kotak yang dibelah miring**. Dua potongan kotak dipisah celah diagonal, seperti link yang dipangkas. Tidak ada huruf di dalamnya, jadi bentuknya tetap jelas di ukuran kecil.
 
 - `logo/pangkas-p.svg`: versi utama (hitam). `logo/pangkas-p-putih.svg` untuk latar gelap.
-- `logo/pangkas-p-kecil.svg`: tanpa potongan kaki. Dipakai di bawah 24 px (footer, favicon), karena di ukuran itu potongan kaki menjadi noda.
+- `logo/pangkas-p-kecil.svg`: sama dengan versi utama. Nama file lama dipertahankan agar tautan tidak rusak.
 - `favicon.svg` dan `apple-touch-icon.png` (sumbernya `logo/apple-touch-icon.svg`) sudah terpasang di `index.html` dan `404.html`.
 
 Warna logo: tinta `#171717` di atas kuning `#f7ff64`. Tulisan "pangkas.in" di header masih teks biasa (Space Grotesk), belum digambar sebagai bentuk huruf.
