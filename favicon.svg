@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <title>NvanCut</title>
   <rect x="10" y="10" width="236" height="236" rx="48" fill="#f7ff64" stroke="#171717" stroke-width="14"/>
-  <path fill="#171717" fill-rule="evenodd" transform="translate(128 128) scale(.9) translate(-128 -128)" d="M24,24 H126 L106,232 H24 Z M146,24 H232 V232 H126 Z"/>
+  <path fill="#171717" fill-rule="evenodd" transform="translate(128 128) scale(.9) translate(-128 -128)" d="M24,232 V24 H84 L176,146 V24 H232 V232 H172 L80,110 V232 Z"/>
 </svg>

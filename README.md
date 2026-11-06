@@ -43,13 +43,12 @@ Nama `fonts` dipakai oleh folder situs, jadi tidak bisa menjadi alias.
 
 ## Logo
 
-Logo Pangkas.in adalah **kotak yang dibelah miring**. Dua potongan kotak dipisah celah diagonal, seperti link yang dipangkas. Tidak ada huruf di dalamnya, jadi bentuknya tetap jelas di ukuran kecil.
+Logo NvanCut adalah **huruf N** yang dibentuk dari dua tiang dan satu garis miring. Bentuknya sederhana dan tetap terbaca di ukuran kecil, misalnya favicon.
 
-- `logo/pangkas-p.svg`: versi utama (hitam). `logo/pangkas-p-putih.svg` untuk latar gelap.
-- `logo/pangkas-p-kecil.svg`: sama dengan versi utama. Nama file lama dipertahankan agar tautan tidak rusak.
+- `logo/nvancut.svg`: versi utama (hitam). `logo/nvancut-putih.svg` untuk latar gelap.
 - `favicon.svg` dan `apple-touch-icon.png` (sumbernya `logo/apple-touch-icon.svg`) sudah terpasang di `index.html` dan `404.html`.
 
-Warna logo: tinta `#171717` di atas kuning `#f7ff64`. Tulisan "pangkas.in" di header masih teks biasa (Space Grotesk), belum digambar sebagai bentuk huruf.
+Warna logo: tinta `#171717` di atas kuning `#f7ff64`. Tulisan "NvanCut" di header masih teks biasa (Space Grotesk), belum digambar sebagai bentuk huruf.
 
 ## Font
 
